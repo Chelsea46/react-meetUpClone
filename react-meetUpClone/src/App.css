@@ -1,0 +1,84 @@
+/* body{
+  background-image: url('https://img.freepik.com/free-vector/creative-organic-shapes-background_23-2148879761.jpg?w=900&t=st=1685439315~exp=1685439915~hmac=5a23adb4a90c59d427458007c49749405aeccd9fa0716b0c3187c4bf008b6074');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100%;
+  margin: 0;
+} */
+
+body {
+  margin: 0;
+}
+.nav-logo{
+  color: #EE9F79;
+  font-family: 'Cherry Bomb One', cursive;
+  font-size: 1.75rem;
+ margin: 0em 0em 0em 1em;
+}
+
+nav{
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #D9D9D9;
+  width: 100%;
+  align-items: center;
+}
+
+.nav-list{
+  display: flex;
+  list-style: none;
+  font-family: 'Mulish', sans-serif;
+}
+
+.signup{
+  color: white;
+  margin-left: 1em;
+  margin-right: 1em;
+  background-color: #3A798A;
+  padding: .5em 1em;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.login{
+  color: #3A798A;
+  padding: .5em 1em;
+  cursor: pointer;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+}
+
+.center-form{
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+}
+
+.activity-form-container{
+  color: white;
+  width: 30%;
+  height: 400px;
+  padding: 1em;
+  border-radius: 8px;
+  text-align: center;
+  background-color: lightsalmon;
+}
+
+input{
+  margin-bottom: 2em;
+  border-radius: 8px;
+  padding: .75em;
+}
+
+.activity-btn{
+  width: 50%;
+  padding: .5em;
+  background-color: white;
+  margin-left: 8em;
+}
