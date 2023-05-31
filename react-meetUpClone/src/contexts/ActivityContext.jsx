@@ -1,4 +1,4 @@
-import {useState, createContext} from 'react'
+import {useState, createContext, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 
 export const ActivityContext = createContext()
@@ -38,6 +38,7 @@ function ActivityContextProvider(props){
             }))
         }   
     }
+
     
     function handleSubmit(event){
         event.preventDefault()

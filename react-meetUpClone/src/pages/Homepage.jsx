@@ -7,20 +7,21 @@ export default function Homepage(){
     
     const {activityFormData} = useContext(ActivityContext)
     
-    useEffect(() => {
-        JSON.parse(localStorage.getItem('activityFormData'))
-    }, [activityFormData])
+    // useEffect(() => {
+       const activities = JSON.parse(localStorage.getItem('activityFormData'))
+    // }, [activityFormData])
     
     return (
         <>
         <Navbar />
-        {/* {activities.map((activity) => {
-            return (
-                <>
-                <h1>{activity.activityType}</h1>
-                </>
-            )
-        })} */}
+        <div className="activity-card-center">
+            <div className="activity-card">
+                <p className="card-text" id="date">{activities.date}</p>
+                <h2 className="card-text">{activities.activityName}</h2>
+                <p className="card-text  content">{activities.activityType}</p>
+                <p className="card-text content">{activities.creatorName}</p>
+            </div>
+        </div>
         </>
     )
 }

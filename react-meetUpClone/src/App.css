@@ -82,3 +82,31 @@ input{
   background-color: white;
   margin-left: 8em;
 }
+
+.card-text{
+  margin: .1em;
+}
+
+.activity-card{
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #D9D9D9;
+  width: 40%;
+ 
+}
+
+#date{
+  color: #9F7053;
+  font-weight: bold;
+}
+
+.content{
+  color: grey;
+}
+
+.activity-card-center{
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+}
