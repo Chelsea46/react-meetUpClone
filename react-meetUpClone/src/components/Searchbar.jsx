@@ -6,11 +6,11 @@ export default function Searchbar(){
     const {handleActivity, handleCity, handleDate } = useContext(ActivityContext)
     return(
         <div className="search">
-            <input type="text"
+            <input className = "search-input"type="text"
             placeholder="Activity" onChange={handleActivity} />
-            <input type="text" 
+            <input className = "search-input"type="text" 
             placeholder="City" onChange={handleCity}/>
-            <input type="date" onChange={handleDate}/>
+            <input className = "search-input"type="date" onChange={handleDate}/>
          </div>
     )
 }

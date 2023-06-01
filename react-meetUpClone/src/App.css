@@ -70,12 +70,20 @@ form{
   background-color: lightsalmon;
 }
 
-input{
+.form-input{
   margin-bottom: 2em;
   border-radius: 8px;
   padding: .75em;
 }
 
+.search{
+ margin-left: 3em;
+}
+
+.search-input{
+  border-radius: 8px;
+  padding: .75em;
+}
 .activity-btn{
   width: 50%;
   padding: .5em;
@@ -111,6 +119,10 @@ input{
   align-items: center;
 }
 
+.left-nav{
+  display: flex;
+  align-items: center;
+}
 /* .activity-card-center{
   display: flex;
   width: 100vw;
