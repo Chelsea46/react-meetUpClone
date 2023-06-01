@@ -104,6 +104,13 @@ input{
   color: grey;
 }
 
+.welcome-title{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 /* .activity-card-center{
   display: flex;
   width: 100vw;

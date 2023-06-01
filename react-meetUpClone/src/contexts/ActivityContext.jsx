@@ -11,7 +11,7 @@ function ActivityContextProvider(props){
     const [activityFormData, setActivityFormData] = useState({
         activityName: '',
         activityType: '',
-        activityCity: '',
+        city: '',
         creatorName: '',
         date: ''
       })
@@ -23,8 +23,7 @@ function ActivityContextProvider(props){
     const [activitySearch, setActivitySearch] = useState('')
     const [citySearch, setCitySearch] = useState('')
     const [dateSearch, setDateSearch] = useState('')
-
-    console.log(activitySearch, citySearch, dateSearch)
+    
 
     
 
