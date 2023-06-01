@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom'
 import ActivityForm from './components/ActivityForm'
 import './App.css'
 import Homepage from './pages/Homepage'
+import Activity from './pages/Activity'
 
 
 function App() {
@@ -11,7 +12,8 @@ function App() {
     <>
      <Routes>
       <Route path='/' element ={<Homepage />} />
-      <Route path="/addActivity" element={ <ActivityForm/>}/>
+      <Route path="/addActivity" element={ < ActivityForm />}/>
+      <Route path ='Activity' element = { <Activity />} />
      </Routes>
     </>
   )
