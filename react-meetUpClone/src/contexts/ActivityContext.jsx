@@ -58,12 +58,18 @@ function ActivityContextProvider(props){
         }
     }
 
+    
     // handle submit of form
     function handleSubmit(event) {
         event.preventDefault();
-        const localStorageActivity = JSON.parse(localStorage.getItem('activityFormData')) || [];
-        const addedActivity = [...localStorageActivity, activityFormData];
-        localStorage.setItem('addedActivity', JSON.stringify(addedActivity));
+        let localStorageActivity = JSON.parse(localStorage.getItem('activityFormData')) || []
+        
+        if (!Array.isArray(localStorageActivity)) {
+          localStorageActivity = []
+        }
+      
+        const addedActivity = [...localStorageActivity, activityFormData]
+        localStorage.setItem('activityFormData', JSON.stringify(addedActivity))
         setNewActivity(addedActivity)
         setActivityFormData({
           activityName: '',
@@ -71,9 +77,10 @@ function ActivityContextProvider(props){
           creatorName: '',
           date: '',
           city: ''
-        });
-        navigate('/');
+        })
+        navigate('/')
       }
+      
 
     //   handle search
     function handleActivity(e){
