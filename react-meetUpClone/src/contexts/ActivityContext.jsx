@@ -23,9 +23,11 @@ function ActivityContextProvider(props){
     const [activitySearch, setActivitySearch] = useState('')
     const [citySearch, setCitySearch] = useState('')
     const [dateSearch, setDateSearch] = useState('')
-    
 
-    
+    useEffect(() => {
+        let localStorageActivity = JSON.parse(localStorage.getItem('activityFormData')) || []
+        setNewActivity(localStorageActivity)
+    }, [])
 
     //   form change
     function handleChange(e){
@@ -63,11 +65,6 @@ function ActivityContextProvider(props){
     function handleSubmit(event) {
         event.preventDefault();
         let localStorageActivity = JSON.parse(localStorage.getItem('activityFormData')) || []
-        
-        if (!Array.isArray(localStorageActivity)) {
-          localStorageActivity = []
-        }
-      
         const addedActivity = [...localStorageActivity, activityFormData]
         localStorage.setItem('activityFormData', JSON.stringify(addedActivity))
         setNewActivity(addedActivity)
@@ -83,20 +80,24 @@ function ActivityContextProvider(props){
       
 
     //   handle search
-    function handleActivity(e){
-      setActivitySearch(e.target.value)
-    }
+    function handleActivity(e) {
+        const activityValue = e.target.value;
+        setActivitySearch(activityValue);
+      }
+      
+      function handleCity(e) {
+        const cityValue = e.target.value;
+        setCitySearch(cityValue);
+      }
+      
+      function handleDate(e) {
+        const dateValue = e.target.value;
+        setDateSearch(dateValue);
+      }
+      
 
-  function handleCity(e){
-    setCitySearch(e.target.value)
-    }
 
-function handleDate(e){
-    setDateSearch(e.target.value)
-    }
-
-
-    const value = { activitySearch, citySearch, dateSearch, handleActivity, handleCity, handleDate, handleSubmit, handleChange, activityFormData, setActivityFormData, newActivity}
+    const value = { activitySearch, citySearch, dateSearch, handleActivity, handleCity, handleDate, handleSubmit, handleChange, activityFormData, setActivityFormData, newActivity, setNewActivity}
 
     return(
         <ActivityContext.Provider value={value}>

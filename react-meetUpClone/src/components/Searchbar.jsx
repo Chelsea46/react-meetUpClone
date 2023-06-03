@@ -1,9 +1,10 @@
-import { useContext, useState} from "react"
+import { useContext} from "react"
 import { ActivityContext } from "../contexts/ActivityContext"
 
 export default function Searchbar(){
 
     const {handleActivity, handleCity, handleDate } = useContext(ActivityContext)
+
     return(
         <div className="search">
             <input className = "search-input"type="text"
