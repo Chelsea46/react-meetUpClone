@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar"
 import { useContext, useState, useEffect} from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link } from "react-router-dom"
 import { ActivityContext } from "../contexts/ActivityContext"
 
 export default function Homepage(){
@@ -50,7 +50,6 @@ export default function Homepage(){
         nav('/addActivity')
     }
 
-    console.log(filteredState)
     // pagnation
 
     const indexOfLastItem = currentPage *postsPerPage
@@ -72,7 +71,9 @@ export default function Homepage(){
                     <div className="activity-card-center">
                         <div className="activity-card">
                             <p className="card-text" id="date">{activity.date}</p>
-                            <h2 className="card-text">{activity.activityName}</h2>
+                            <Link to={`/Activity/${activity.id}`}>
+                                 <h2 className="card-text">{activity.activityName}</h2>
+                             </Link> 
                             <p className="card-text content">{activity.creatorName} - {activity.city}</p>
                             {/* <p className="card-text  content">{activity.activityType}</p> */}
                         </div>
