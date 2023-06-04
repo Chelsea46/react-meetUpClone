@@ -8,9 +8,12 @@ export default function Homepage(){
     const nav = useNavigate()
 
     const { newActivity, citySearch, activitySearch, dateSearch} = useContext(ActivityContext)
-
+    const [currentPage, setCurrentPage] = useState(1)
+    const [postsPerPage, setPostsPerPage] = useState(6)
     const [filteredState, setFilteredState] = useState([])
-    console.log(citySearch)
+
+
+
     useEffect(() => {
         if(filteredState.length < 1){
             setFilteredState(newActivity)
@@ -18,35 +21,43 @@ export default function Homepage(){
     },[newActivity])
 
     useEffect(() => {
-       const filteredActivity = filteredState.filter((activity) =>{
-        console.log("Activity Search:", activitySearch);
-        console.log("City Search:", citySearch);
+        const filteredActivity = filteredState.filter((activity) =>{
 
-
-            if(activitySearch && citySearch){
-                console.log(activity.activityName.toLowerCase().includes(activitySearch?.toLowerCase())
-                && activity.city.toLowerCase().includes(citySearch.toLowerCase()))
-                return (
-                activity.activityName.toLowerCase().includes(activitySearch?.toLowerCase()) &&
-                activity.city.toLowerCase().includes(citySearch.toLowerCase())
-                )
-            } 
-       })
-       const filteredArray = [...filteredActivity]
-
-       if(activitySearch && citySearch){
-           setFilteredState(filteredArray)
-       }
-
-    //    console.log(filteredActivity)
-    }, [activitySearch, citySearch])
+             if(activitySearch && citySearch){
+                 return (
+                     activity.activityName.toLowerCase().includes(activitySearch?.toLowerCase()) &&
+                     activity.city.toLowerCase().includes(citySearch.toLowerCase())
+                 )
+             } else if (activitySearch){
+                 return (
+                     activity.activityName.toLowerCase().includes(activitySearch?.toLowerCase())
+                 )
+             } else if (citySearch){
+                 return (
+                     activity.city.toLowerCase().includes(citySearch.toLowerCase())
+                 )
+             }
+         })
+ 
+        setFilteredState(filteredActivity)
+ 
+        if (filteredActivity.length < 1){
+             setFilteredState(newActivity)
+        }
+     }, [activitySearch, citySearch])
 
     function navToForm(){
         nav('/addActivity')
     }
 
     console.log(filteredState)
-    console.log(newActivity)
+    // pagnation
+
+    const indexOfLastItem = currentPage *postsPerPage
+    const indexOfFirstItem = indexOfLastItem - postsPerPage
+    const currentItem = filteredState.slice(indexOfFirstItem, indexOfLastItem)
+    console.log(currentItem)
+
     return (
         <>
         <Navbar />

@@ -1,5 +1,6 @@
 import {useState, createContext, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
+import { v4 as uuidv4 } from 'uuid'
 
 export const ActivityContext = createContext()
 
@@ -9,6 +10,7 @@ function ActivityContextProvider(props){
 
     // form state
     const [activityFormData, setActivityFormData] = useState({
+        id: '',
         activityName: '',
         activityType: '',
         city: '',
@@ -55,7 +57,7 @@ function ActivityContextProvider(props){
         }else if(name === 'city'){
             setActivityFormData((prevActivityFormData) => ({
                 ...prevActivityFormData,
-                city:value
+                city:value,
             }))
         }
     }
@@ -63,9 +65,14 @@ function ActivityContextProvider(props){
     
     // handle submit of form
     function handleSubmit(event) {
-        event.preventDefault();
+        event.preventDefault()
+
+        const uniqueId = uuidv4()
+        const formDataWithId = { ...activityFormData, id: uniqueId }
+
         let localStorageActivity = JSON.parse(localStorage.getItem('activityFormData')) || []
-        const addedActivity = [...localStorageActivity, activityFormData]
+        const addedActivity = [...localStorageActivity, formDataWithId]
+        
         localStorage.setItem('activityFormData', JSON.stringify(addedActivity))
         setNewActivity(addedActivity)
         setActivityFormData({
