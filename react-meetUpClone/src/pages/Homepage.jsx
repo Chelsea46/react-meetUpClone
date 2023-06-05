@@ -61,20 +61,25 @@ export default function Homepage(){
         <>
         <Navbar />
         <div className="welcome-title">
+        <button className="add-activity-btn" onClick = {navToForm}>Add activity</button>
         <h1>Welcome 👋</h1>
-        <h2>Upcoming Events</h2>
         </div>
-        <button onClick = {navToForm}>Add activity</button>
+        <h2 className="upcoming-title">Upcoming Events</h2>
         {filteredState.length > 0  && filteredState.map((activity) => {
             return(
                 <>
                     <div className="activity-card-center">
                         <div className="activity-card">
-                            <p className="card-text" id="date">{activity.date}</p>
-                            <Link to={`/Activity/${activity.id}`}>
-                                 <h2 className="card-text">{activity.activityName}</h2>
-                             </Link> 
-                            <p className="card-text content">{activity.creatorName} - {activity.city}</p>
+                            <div className="image">
+                                <img src="https://images.unsplash.com/photo-1494253109108-2e30c049369b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="" />
+                            </div>
+                            <div className="text">
+                                <p className="card-text" id="date">{activity.date}</p>
+                                <Link style={{ textDecoration: 'none' }} to={`/Activity/${activity.id}`}>
+                                    <h2 className="card-text">{activity.activityName}</h2>
+                                </Link> 
+                                <p className="card-text content">{activity.creatorName} - {activity.city}</p>
+                            </div>
                             {/* <p className="card-text  content">{activity.activityType}</p> */}
                         </div>
                     </div>

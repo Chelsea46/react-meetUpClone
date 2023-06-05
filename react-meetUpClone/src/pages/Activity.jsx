@@ -18,6 +18,7 @@ export default function Activity(){
             <p className="card-text" id="date">{currentActivity[0].date}</p>
             <h2 className="card-text">{currentActivity[0].activityName}</h2>
             <p className="card-text content">{currentActivity[0].creatorName} - {currentActivity[0].city}</p>
+            <button className="enroll-btn">Enroll</button>
          </>
     )
 }
