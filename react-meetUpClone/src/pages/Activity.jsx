@@ -46,27 +46,23 @@ export default function Activity(){
 
     const editActivityWithEnrolled = (data) => {
         const updatedActivityEnrollment = newActivity.map((activity) => {
-            if (activity.id === id) {
-                return {
-                    id: activity.id,
-                    activityName: activity.activityName,
-                    activityType: activity.activityType,
-                    creatorName: activity.creatorName,
-                    date: activity.date,
-                    city: activity.city,
-                    enrolled: [{
-                        firstName: data.firstName,
-                        lastName: data.lastName,
-                        email: data.email
-                    }]
+          if (activity.id === id) {
+            return {
+              ...activity,
+              enrolled: [
+                ...activity.enrolled,
+                {
+                  firstName: data.firstName,
+                  lastName: data.lastName,
+                  email: data.email,
                 }
+              ]
             }
-            return activity
+          }
+          return activity
         })
         setNewActivity(updatedActivityEnrollment)
-    }
-
-    console.log(currentActivity[0].enrolled)
+      }
 
 
     function onSubmit(e){
@@ -103,7 +99,14 @@ export default function Activity(){
                             <div className="date-location">
                                 <p><i className="fa-solid fa-clock"></i>{currentActivity[0].date}</p>
                                 <p><i className="fa-solid fa-location-dot"></i>{currentActivity[0].city}</p>
-                                <p>People enrolled: {currentActivity[0].enrolled.firstName} {currentActivity[0].enrolled.lastName}</p>
+                                <p>People enrolled:</p>
+                                <ul>
+                                    {currentActivity[0].enrolled.map((person, index) => (
+                                    <li key={index}>
+                                        {person.firstName} {person.lastName}
+                                    </li>
+                                    ))}
+                                </ul>
                                 <img src="https://images.unsplash.com/photo-1604357209793-fca5dca89f97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1664&q=80" alt="" />
                             </div>
                         </div>
