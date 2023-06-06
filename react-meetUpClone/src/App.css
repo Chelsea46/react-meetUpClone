@@ -1,13 +1,12 @@
-/* body{
-  background-image: url('https://img.freepik.com/free-vector/creative-organic-shapes-background_23-2148879761.jpg?w=900&t=st=1685439315~exp=1685439915~hmac=5a23adb4a90c59d427458007c49749405aeccd9fa0716b0c3187c4bf008b6074');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 100%;
+body{
   margin: 0;
-} */
+}
 
-body {
+.form-page-container{
+  background-color: white;
+}
+
+.homepage-container {
   margin: 0;
   background-color: #EA7A40;
 }
@@ -59,16 +58,23 @@ form{
   justify-content: center;
   width: 100vw;
   height: 100vh;
-  align-items: center;
+  margin-top: 3em;
 }
 
 .activity-form-container{
-  color: white;
+  font-family: 'Familjen Grotesk', sans-serif;
   width: 30%;
   padding: 1em;
-  border-radius: 8px;
   text-align: center;
-  background-color: lightsalmon;
+  background-color: #A5B2D7;
+  box-shadow: 5px 4px 0px -1px rgba(0,0,0,1);
+  border: 1px solid black;
+  height: 464px;
+}
+
+.activity-page-container{
+  background-color: #A5B2D7;
+  height: 100vh;
 }
 
 .form-input{
@@ -88,8 +94,10 @@ form{
 .activity-btn{
   width: 50%;
   padding: .5em;
-  background-color: white;
+  background-color: #EA773E;
   margin-left: 8em;
+  box-shadow: 3px 3px 0px -1px rgba(0,0,0,1);
+  border: 1px solid black;
 }
 
 .card-text{
@@ -159,4 +167,149 @@ img{
   margin-left: 2em;
   font-size: 2.5em;
   font-family: 'Familjen Grotesk', sans-serif;
+}
+
+.activity-hero{
+  font-family: 'Familjen Grotesk', sans-serif;
+  display: flex;
+  margin-left: 10em;
+  flex-direction: column;
+}
+
+.activity-hero > p {
+  margin: 0;
+}
+
+.details-container{
+  border-top: 1px solid black;
+  background-color: white;
+  margin-top: 1.5em;
+  display: flex;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+.enroll-container{
+  display: flex;
+  justify-content: space-around;
+  position: sticky;
+  background-color: #A5B2D7;
+  height: 70px;
+}
+
+.date-activity{
+  display: flex;
+  flex-direction: column;
+  margin-top: 1em;
+}
+
+.details-btns{
+  margin-top: 1em;
+  width: 15%;
+  display: flex;
+  justify-content: space-between;
+  height: 37px;
+}
+
+.share-btn{
+  width: 45%;
+  color: black;
+  background-color: white;
+  padding: .5em;
+  cursor: pointer;
+  border: 2px solid black;
+  box-shadow: 3px 3px 0px -1px rgba(0,0,0,1);
+}
+
+.enroll-btn{
+  cursor: pointer;
+  width: 45%;
+  padding: .5em;
+  background-color: #EA773E;
+  box-shadow: 3px 3px 0px -1px rgba(0,0,0,1);
+  border: 1px solid black;
+}
+
+.details-left{
+  margin-left: 19em;
+  width: 34%;
+}
+
+.details-right{
+  width: 35%;
+  margin-right: 5em;
+}
+
+.details-right-card{
+  border: 1px solid black;
+  width: 50%;
+  margin-left: 8em;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: black;
+  background-color: white;
+  border: 2px solid black;
+  box-shadow: 3px 3px 0px -1px rgba(0,0,0,1);
+}
+
+.page-navigation{
+  display: flex;
+  width: 20%;
+  justify-content: space-between;
+  margin-left: 12em;
+  margin-top: 1em;
+}
+
+.active{
+  color: #F5DA6E;
+}
+
+.fa-caret-left, .fa-caret-right{
+  font-size: 2em;
+}
+
+.overlay{
+  background-color: transparent;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+}
+
+.modal-container{
+  max-width: 600px;
+  width: 100vw;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  background-color: white;
+  box-shadow: 3px 3px 0px -1px rgba(0,0,0,1);
+}
+
+.modal-img{
+  width: 250px;
+  object-fit: cover;
+}
+
+.close-btn{
+  position: fixed;
+  top: -10px;
+  right: 8px;
+  cursor: pointer;
+}
+
+.modal-form{
+  margin-top: 3em;
+}
+
+.modal-form > input{
+  padding: .5em;
+  margin-bottom: 1em;
+  width: 100%;
+}
+
+.modal-right{
+  margin-left: 4em;
 }
