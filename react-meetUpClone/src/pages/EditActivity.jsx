@@ -30,22 +30,22 @@ export default function EditActivity(){
             if (name === 'activity-name') {
               setEditActivityData((prevFormData) => ({
                 ...prevFormData,
-                activityName: value
+                activityName: value.charAt(0).toUpperCase() + value.slice(1)
               }))
             } else if (name === 'activity-type') {
               setEditActivityData((prevFormData) => ({
                 ...prevFormData,
-                activityType:value
+                activityType:value.charAt(0).toUpperCase() + value.slice(1)
               }))
             } else if (name === 'creator-name') {
               setEditActivityData((prevFormData) => ({
                 ...prevFormData,
-                creatorName: value
+                creatorName: value.charAt(0).toUpperCase() + value.slice(1)
               }))
             } else if (name === 'city') {
               setEditActivityData((prevFormData) => ({
                 ...prevFormData,
-                city:value
+                city:value.charAt(0).toUpperCase() + value.slice(1)
               }))
             } else if (name === 'date') {
                 setEditActivityData((prevFormData) => ({
@@ -54,8 +54,6 @@ export default function EditActivity(){
                 }))
             }
         }
-
-        console.log(editActivityData)
 
         const editActivityUpdate = (data) => {
             const updatedActivity = newActivity.map((activity) => {
@@ -94,11 +92,11 @@ export default function EditActivity(){
             <div className="activity-form-container">
                 <h1>Edit activity details</h1>
                 <form onSubmit={handleEdit}>
-                    <input className="form-input" type="text" name="activity-name" placeholder={currentActivity[0].activityName} onChange={editFormChange} required/>
-                    <input className="form-input"type="text" name="activity-type" placeholder={currentActivity[0].activityType} onChange={editFormChange} required/>
-                    <input className="form-input"type="text" name="creator-name" placeholder={currentActivity[0].creatorName} onChange={editFormChange} required/>
-                    <input className="form-input"type="text" name="city" placeholder={currentActivity[0].city} onChange={editFormChange} required/>
-                    <input className="form-input"type="date" name="date" placeholder={currentActivity[0]} onChange={editFormChange} required />
+                    <input className="form-input" type="text" name="activity-name" placeholder={currentActivity[0].activityName} value={editActivityData.activityName} onChange={editFormChange} required/>
+                    <input className="form-input"type="text" name="activity-type" placeholder={currentActivity[0].activityType} value={editActivityData.activityType} onChange={editFormChange} required/>
+                    <input className="form-input"type="text" name="creator-name" placeholder={currentActivity[0].creatorName} value={editActivityData.creatorName} onChange={editFormChange} required/>
+                    <input className="form-input"type="text" name="city" placeholder={currentActivity[0].city} value={editActivityData.city} onChange={editFormChange} required/>
+                    <input className="form-input"type="date" name="date" placeholder={currentActivity[0].date} value={editActivityData.date} onChange={editFormChange} required />
                     <button className="activity-btn">Submit Edited Activity</button>
                 </form>
             </div>

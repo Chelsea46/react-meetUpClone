@@ -9,8 +9,10 @@ export default function Homepage(){
 
     const { newActivity, citySearch, activitySearch, dateSearch} = useContext(ActivityContext)
     const [filteredState, setFilteredState] = useState([])
-    const [activityPerPage, setActivityPerPage] = useState(6)
+    const [activityPerPage, setActivityPerPage] = useState(3)
     const [currentPage, setCurrentPage] = useState(1)
+
+    console.log(newActivity)
 
 
 
@@ -69,11 +71,13 @@ export default function Homepage(){
     return (
         <div className="homepage-container">
             <Navbar />
-            <div className="welcome-title">
-            <button className="add-activity-btn" onClick = {navToForm}>Add activity</button>
-            <h1>Welcome 👋</h1>
+            <div className="wavy">
+                <div className="welcome-title">
+                <h1>Forge New Bonds,  <span className="adventure"> Unleash Adventure! </span></h1>
+                <button className="add-activity-btn" onClick = {navToForm}>Add activity</button>
+                </div>
             </div>
-            <h2 className="upcoming-title">Upcoming Events</h2>
+            <h2 className="upcoming-title">Upcoming Events ~</h2>
                 <div className="activity-card-container">
                     {filteredState.length > 0  && visibleActivity.map((activity) => {
                         return(

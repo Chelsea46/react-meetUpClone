@@ -5,7 +5,7 @@ export default function Navbar(){
     return(
         <nav>
             <div className="left-nav">
-             <Link style={{ textDecoration: 'none' }} to={'/'}> <h3 className="nav-logo">BuddyUp</h3> </Link> 
+             <Link style={{ textDecoration: 'none' }} to={'/'}> <img className="logo-img" src="../src/assets/images/2.png" alt="" /> </Link> 
                 <Searchbar />
             </div>
             <ul className="nav-list">

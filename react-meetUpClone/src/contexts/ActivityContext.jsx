@@ -28,6 +28,7 @@ function ActivityContextProvider(props){
 
     useEffect(() => {
         let localStorageActivity = JSON.parse(localStorage.getItem('activityFormData')) || []
+        console.log(localStorageActivity)
         setNewActivity(localStorageActivity)
     }, [])
 
@@ -37,17 +38,17 @@ function ActivityContextProvider(props){
         if(name === 'activity-name'){
             setActivityFormData((prevActivityFormData) => ({
                 ...prevActivityFormData,
-                activityName:value
+                activityName:value.charAt(0).toUpperCase() + value.slice(1)
             }))
         }else if(name === 'activity-type'){
             setActivityFormData((prevActivityFormData) => ({
                 ...prevActivityFormData,
-                activityType:value
+                activityType:value.charAt(0).toUpperCase() + value.slice(1)
             }))
         }else if(name === 'creator-name'){
             setActivityFormData((prevActivityFormData) => ({
                 ...prevActivityFormData,
-                creatorName:value
+                creatorName:value.charAt(0).toUpperCase() + value.slice(1)
             }))
         }else if(name === 'date'){
             setActivityFormData((prevActivityFormData) => ({
@@ -57,7 +58,7 @@ function ActivityContextProvider(props){
         }else if(name === 'city'){
             setActivityFormData((prevActivityFormData) => ({
                 ...prevActivityFormData,
-                city:value,
+                city:value.charAt(0).toUpperCase() + value.slice(1)
             }))
         }
     }
@@ -102,7 +103,7 @@ function ActivityContextProvider(props){
         setDateSearch(dateValue);
       }
       
-
+      
 
     const value = { activitySearch, citySearch, dateSearch, handleActivity, handleCity, handleDate, handleSubmit, handleChange, activityFormData, setActivityFormData, newActivity, setNewActivity}
 
