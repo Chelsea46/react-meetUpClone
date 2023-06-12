@@ -65,7 +65,7 @@ export default function Activity(){
             return activity
         })  
         localStorage.setItem('activityFormData', JSON.stringify(updatedActivityEnrollment))
-        setNewActivity(localStorageActivity)
+        setNewActivity(updatedActivityEnrollment)
     }
     
     function onSubmit(e){
@@ -93,10 +93,11 @@ export default function Activity(){
                 <div className="details-left">
                     <img className="details-img" src="https://images.unsplash.com/photo-1494253109108-2e30c049369b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="" />
                     <h3>Details</h3>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit et, error voluptatem iste rem odio. Voluptas alias sequi, at voluptates ad error quisquam nesciunt dignissimos earum in repudiandae odio. Dolorem!
-                    Aperiam repellendus ea similique nesciunt dolore quae at eius excepturi voluptas, obcaecati, maiores illo suscipit impedit delectus officiis quis ut. Itaque quasi rerum ex ducimus sed non corrupti quos at!
-                    Veritatis doloribus perspiciatis sint tempora accusamus aliquid molestiae amet voluptas qui ratione odit consequatur debitis, laudantium corporis cum laboriosam? Ut, perspiciatis? Eum nemo quia nisi quasi odio ullam quo architecto.
-                    Nulla, eius omnis fuga nam architecto temporibus rem quae corporis magni iste saepe, pariatur, quaerat at deserunt quidem recusandae aperiam unde magnam deleniti atque laborum! Aperiam veniam quo odit fugiat.</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, perferendis repellendus velit alias possimus asperiores veritatis at error tempore quas provident illum impedit minus assumenda laborum obcaecati fuga eos natus.
+                    Odio nesciunt quis temporibus repellendus vero sit delectus, quod velit error culpa. Minima aliquam architecto adipisci eum necessitatibus. Officiis earum repellendus aspernatur saepe ab fugit natus voluptatibus repellat exercitationem porro.
+                    Porro nam sed inventore, nemo id dicta magni minus iste impedit placeat enim, quisquam ipsa perspiciatis vero omnis qui, quia molestiae expedita quod suscipit explicabo voluptates! Quod dolores omnis provident!
+                    Iusto quia similique ea quibusdam eaque et accusantium inventore? Nulla commodi fugit quisquam. A non in accusamus beatae libero optio id cumque, dolorum enim culpa voluptas dicta illum ducimus sequi!
+                    </p>
                 </div>
                 
                     <div className="details-right">
@@ -112,7 +113,7 @@ export default function Activity(){
                                 </li>
                                 ))}
                             </ul>
-                                <img src="https://images.unsplash.com/photo-1604357209793-fca5dca89f97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1664&q=80" alt="" />
+                                <img className="enrollment-card-img" src="https://images.unsplash.com/photo-1604357209793-fca5dca89f97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1664&q=80" alt="" />
                             </div>
                         </div>
                     </div>

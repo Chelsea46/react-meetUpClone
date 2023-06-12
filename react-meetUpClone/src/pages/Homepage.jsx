@@ -82,10 +82,9 @@ export default function Homepage(){
                     {filteredState.length > 0  && visibleActivity.map((activity) => {
                         return(
                             <>
-                                <div className="activity-card-center">
                                     <div className="activity-card">
                                         <div className="image">
-                                            <img src="https://images.unsplash.com/photo-1494253109108-2e30c049369b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="" />
+                                            <img className="activity-card-img" src="https://images.unsplash.com/photo-1494253109108-2e30c049369b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="" />
                                         </div>
                                         <div className="text">
                                             <p className="card-text" id="date">{activity.date}</p>
@@ -94,9 +93,10 @@ export default function Homepage(){
                                             </Link> 
                                             <p className="card-text content">{activity.creatorName} - {activity.city}</p>
                                         </div>
-                                        <Link style={{ textDecoration: 'none' }} to={`/EditActivity/${activity.id}`}><button>Edit</button></Link>
+                                        <div className="edit-btn-center">
+                                            <Link style={{ textDecoration: 'none' }} to={`/EditActivity/${activity.id}`}><button className="edit-btn">Edit</button></Link>
+                                        </div>
                                     </div>
-                                </div>
                             </>
                     )
                 })}
