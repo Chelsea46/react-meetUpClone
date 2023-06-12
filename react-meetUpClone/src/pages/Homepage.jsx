@@ -71,30 +71,28 @@ export default function Homepage(){
     return (
         <div className="homepage-container">
             <Navbar />
-            <div className="wavy">
+           
                 <div className="welcome-title">
                 <h1>Forge New Bonds,  <span className="adventure"> Unleash Adventure! </span></h1>
                 <button className="add-activity-btn" onClick = {navToForm}>Add activity</button>
                 </div>
-            </div>
+            
             <h2 className="upcoming-title">Upcoming Events ~</h2>
                 <div className="activity-card-container">
                     {filteredState.length > 0  && visibleActivity.map((activity) => {
                         return(
                             <>
                                     <div className="activity-card">
-                                        <div className="image">
                                             <img className="activity-card-img" src="https://images.unsplash.com/photo-1494253109108-2e30c049369b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="" />
-                                        </div>
                                         <div className="text">
                                             <p className="card-text" id="date">{activity.date}</p>
                                             <Link style={{ textDecoration: 'none' }} to={`/Activity/${activity.id}`}>
                                                 <h2 className="card-text">{activity.activityName}</h2>
                                             </Link> 
                                             <p className="card-text content">{activity.creatorName} - {activity.city}</p>
-                                        </div>
-                                        <div className="edit-btn-center">
-                                            <Link style={{ textDecoration: 'none' }} to={`/EditActivity/${activity.id}`}><button className="edit-btn">Edit</button></Link>
+                                            <div className="edit-btn-center">
+                                                <Link style={{ textDecoration: 'none' }} to={`/EditActivity/${activity.id}`}><p className="edit-btn">Edit</p></Link>
+                                            </div>
                                         </div>
                                     </div>
                             </>
