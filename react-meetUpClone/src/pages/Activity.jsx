@@ -109,7 +109,7 @@ export default function Activity(){
                             <ul>
                                 {currentActivity[0].enrolled && currentActivity[0].enrolled.map((person, index) => (
                                 <li key={index}>
-                                    {person.firstName} {person.lastName}
+                                    <span><i className="fa-solid fa-user"></i></span>{person.firstName} {person.lastName}
                                 </li>
                                 ))}
                             </ul>

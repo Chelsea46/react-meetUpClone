@@ -288,7 +288,7 @@ form{
   width: 80%;
 }
 
-.fa-clock, .fa-location-dot{
+.fa-clock, .fa-location-dot, .fa-user{
   margin-right: 1em;
   color: #EA773E;
 }
@@ -375,6 +375,15 @@ form{
   width: 200px;
 }
 
+.details-left > p{
+  line-height: 2em;
+}
+
+li{
+  list-style: none;
+}
+
+
 
 @media(min-width:820px){
   .activity-card-container{
@@ -408,11 +417,27 @@ form{
   .details-left{
     width: 45%;
   }
+  .details-left > h3{
+    font-size: 2rem;
+  }
   .details-right{
     width: 32%;
     margin-left: 17em;
   }
   .details-btns{
     width: 20%;
+  }
+  .welcome-title > h1{
+    font-size: 3rem;
+  }
+  .upcoming-title{
+    font-size: 2rem;
+  }
+  .activity-hero > h1{
+    font-size: 3rem;
+    margin-left: 1em;
+  }
+  .activity-hero > p{
+    margin-left: 3em;
   }
 }
