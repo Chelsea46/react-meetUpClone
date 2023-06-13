@@ -52,11 +52,11 @@ export default function EditActivity(){
                     date:value
                 }))
             }
-            console.log(editActivityData)
         }
 
         const editActivityUpdate = (data) => {
-            const updatedActivity = newActivity.map((activity) => {
+          let localStorageActivity = JSON.parse(localStorage.getItem('activityFormData')) || []
+            const updatedActivity = localStorageActivity.map((activity) => {
                 if (activity.id === id) {
                     return {
                         id: activity.id,
@@ -64,11 +64,13 @@ export default function EditActivity(){
                         activityType: data.activityType || activity.activityType,
                         creatorName: data.creatorName || activity.creatorName,
                         date: data.date || activity.date,
-                        city: data.city || activity.city
+                        city: data.city || activity.city,
+                        enrolled: activity.enrolled || []
+                      }
                     }
-                }
                 return activity
             })
+            localStorage.setItem('activityFormData', JSON.stringify(updatedActivity))
             setNewActivity(updatedActivity)
         }
 

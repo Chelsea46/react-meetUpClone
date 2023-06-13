@@ -16,12 +16,12 @@ export default function Activity(){
         email: ''
     })
 
-    
     const {id} = useParams()
     
     const currentActivity = newActivity.filter(current => { 
         return id === current.id
     })
+
     
     function enrollFormChange(e){
         const { name, value } = e.target;
@@ -79,6 +79,7 @@ export default function Activity(){
         setModalOpen(false)
     }
     
+    console.log(currentActivity[0].enrolled)
 
     return(
         <div className="activity-page-container">
@@ -107,7 +108,7 @@ export default function Activity(){
                                 <p><i className="fa-solid fa-location-dot"></i>{currentActivity[0].city}</p>
                                 <p>People enrolled:</p>
                             <ul>
-                                {currentActivity[0].enrolled && currentActivity[0].enrolled.map((person, index) => (
+                                {Array.isArray(currentActivity[0].enrolled) && currentActivity[0].enrolled.map((person, index) => (
                                 <li key={index}>
                                     <span><i className="fa-solid fa-user"></i></span>{person.firstName} {person.lastName}
                                 </li>

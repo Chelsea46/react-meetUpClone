@@ -12,10 +12,7 @@ export default function Homepage(){
     const [activityPerPage, setActivityPerPage] = useState(3)
     const [currentPage, setCurrentPage] = useState(1)
 
-    console.log(newActivity)
-
-
-
+    
     useEffect(() => {
         if(filteredState.length < 1){
             setFilteredState(newActivity)
@@ -38,16 +35,20 @@ export default function Homepage(){
                  return (
                      activity.city.toLowerCase().includes(citySearch.toLowerCase())
                  )
+             } else if(dateSearch){
+                return (
+                    activity.date.includes(dateSearch)
+                )
              }
          })
  
         setFilteredState(filteredActivity)
- 
+        
         if (filteredActivity.length < 1){
-             setFilteredState(newActivity)
+            setFilteredState(newActivity)
         }
-     }, [activitySearch, citySearch])
-
+    }, [activitySearch, citySearch, dateSearch])
+    
     function navToForm(){
         nav('/addActivity')
     }

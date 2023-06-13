@@ -28,7 +28,6 @@ function ActivityContextProvider(props){
 
     useEffect(() => {
         let localStorageActivity = JSON.parse(localStorage.getItem('activityFormData')) || []
-        console.log(localStorageActivity)
         setNewActivity(localStorageActivity)
     }, [])
 
