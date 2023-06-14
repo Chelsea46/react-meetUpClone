@@ -72,12 +72,19 @@ export default function Homepage(){
     return (
         <div className="homepage-container">
             <Navbar />
-           
-                <div className="welcome-title">
-                <h1>Forge New Bonds,  <span className="adventure"> Unleash Adventure! </span></h1>
-                <button className="add-activity-btn" onClick = {navToForm}>Add activity</button>
+                <div className="hero-section">
+                    <div className="welcome-title">
+                        <h1 className="bonds">Forge New Bonds,</h1>
+                        <h1 className="adventure"> Unleash Adventure! </h1>
+                        <p>Whatever your interest, from hiking and reading to networking and skill sharing, there are thousands of people who share it on BuddyUp. Events are happening every day—sign up to join the fun.
+                        </p>
+                        <button className="add-activity-btn" onClick = {navToForm}>Add activity</button>
+                    </div>
+                    <div className="homepage-right-img">
+                        <img className="homepage-img" src="https://secure.meetupstatic.com/next/images/shared/online_events.svg?w=1080" alt="" />
+                    </div>
                 </div>
-            
+
             <h2 className="upcoming-title">Upcoming Events ~</h2>
                 <div className="activity-card-container">
                     {filteredState.length > 0  && visibleActivity.map((activity) => {

@@ -104,17 +104,18 @@ export default function Activity(){
                     <div className="details-right">
                         <div className="details-right-card">
                             <div className="date-location">
+                                <h3>When and where:</h3>
                                 <p><i className="fa-solid fa-clock"></i>{currentActivity[0].date}</p>
                                 <p><i className="fa-solid fa-location-dot"></i>{currentActivity[0].city}</p>
-                                <p>People enrolled:</p>
-                            <ul>
+                            </div>
+                            <img className="enrollment-card-img" src="https://secure.meetupstatic.com/next/images/shared/handsUp.svg?w=384" alt="" />
+                            <div className="enrolled">
+                                <h3>People enrolled:</h3>
                                 {Array.isArray(currentActivity[0].enrolled) && currentActivity[0].enrolled.map((person, index) => (
-                                <li key={index}>
-                                    <span><i className="fa-solid fa-user"></i></span>{person.firstName} {person.lastName}
-                                </li>
+                                <p key={index}>
+                                    <span className="line"></span><span><i className="fa-solid fa-user"></i></span>{person.firstName} {person.lastName}
+                                </p>
                                 ))}
-                            </ul>
-                                <img className="enrollment-card-img" src="https://images.unsplash.com/photo-1604357209793-fca5dca89f97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1664&q=80" alt="" />
                             </div>
                         </div>
                     </div>
