@@ -1,8 +1,8 @@
 import express  from "express"
-import { getActivity, createActivity, updateActivity, removeActivity } from '../controllers/activityController.js'
+import { getActivity, setActivity, updateActivity, removeActivity } from '../controllers/activityController.js'
 const router = express.Router()
 
-router.route('/').get(getActivity).post(createActivity)
+router.route('/').get(getActivity).post(setActivity)
 router.route('/:id').put(updateActivity).delete(removeActivity)
 
 
