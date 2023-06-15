@@ -342,7 +342,6 @@ form{
 
 .date-location{
   position: absolute;
-  z-index: 1;
 }
 
 .active{
@@ -370,7 +369,7 @@ form{
 
 .modal-container{
   max-width: 600px;
-  width: 100vw;
+  width: 93vw;
   position: fixed;
   top: 40%;
   left: 50%;
@@ -380,8 +379,17 @@ form{
   box-shadow: 3px 3px 0px -1px rgba(0,0,0,1);
 }
 
+.modal-form > button{
+  margin-bottom: 1em;
+  padding: .5em;
+  background-color: white;
+  box-shadow: 3px 3px 0px -1px rgba(0,0,0,1);
+  border: 1px solid black;
+  font-weight: bold;
+}
+
 .modal-img{
-  width: 250px;
+  width: 162px;
   object-fit: cover;
 }
 
@@ -398,8 +406,8 @@ form{
 
 .modal-form > input{
   padding: .5em;
-  margin-bottom: 1em;
-  width: 80%;
+  margin-bottom: 2em;
+  width: 76%;
 }
 
 .modal-right{
@@ -497,5 +505,21 @@ li{
     width: 30%;
     margin-top: 2em;
     margin-right: 3em;
+   }
+   .modal-img{
+    width: 267px;
+   }
+   .modal-container{
+    width: 100vw;
+   }
+   .modal-form > input{
+    padding: 1em;
+    width: 100%;
+   }
+   .modal-form{
+    margin-top: 5em;
+   }
+   .modal-right{
+    margin-left: 4em;
    }
 }

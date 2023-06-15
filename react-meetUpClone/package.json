@@ -4,12 +4,18 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
   "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2",
+    "mongoose": "^7.3.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.11.2",
@@ -23,6 +29,15 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
+    "nodemon": "^2.0.22",
     "vite": "^4.3.9"
-  }
+  },
+  "description": "Meetup-clone app",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "react-meetUpClone"
+  },
+  "author": "Chelsea Roberts",
+  "license": "MIT"
 }

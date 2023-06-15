@@ -96,8 +96,6 @@ export default function Activity(){
                     <h3>Details</h3>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam, perferendis repellendus velit alias possimus asperiores veritatis at error tempore quas provident illum impedit minus assumenda laborum obcaecati fuga eos natus.
                     Odio nesciunt quis temporibus repellendus vero sit delectus, quod velit error culpa. Minima aliquam architecto adipisci eum necessitatibus. Officiis earum repellendus aspernatur saepe ab fugit natus voluptatibus repellat exercitationem porro.
-                    Porro nam sed inventore, nemo id dicta magni minus iste impedit placeat enim, quisquam ipsa perspiciatis vero omnis qui, quia molestiae expedita quod suscipit explicabo voluptates! Quod dolores omnis provident!
-                    Iusto quia similique ea quibusdam eaque et accusantium inventore? Nulla commodi fugit quisquam. A non in accusamus beatae libero optio id cumque, dolorum enim culpa voluptas dicta illum ducimus sequi!
                     </p>
                 </div>
                 
