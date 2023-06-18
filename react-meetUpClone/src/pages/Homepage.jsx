@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar"
 import { useContext, useState, useEffect} from "react"
 import { useNavigate, Link } from "react-router-dom"
 import { ActivityContext } from "../contexts/ActivityContext"
+import moment from "moment"
 
 export default function Homepage(){
 
@@ -93,13 +94,13 @@ export default function Homepage(){
                                     <div className="activity-card">
                                             <img className="activity-card-img" src="https://images.unsplash.com/photo-1494253109108-2e30c049369b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="" />
                                         <div className="text">
-                                            <p className="card-text" id="date">{activity.date}</p>
-                                            <Link style={{ textDecoration: 'none' }} to={`/Activity/${activity.id}`}>
+                                            <p className="card-text" id="date">{moment(activity.activityDate).format("Do MMM YY")}</p>
+                                            <Link style={{ textDecoration: 'none' }} to={`/Activity/${activity._id}`}>
                                                 <h2 className="card-text">{activity.activityName}</h2>
                                             </Link> 
-                                            <p className="card-text content">{activity.creatorName} - {activity.city}</p>
+                                            <p className="card-text content">{activity.creatorName} - {activity.activityCity}</p>
                                             <div className="edit-btn-center">
-                                                <Link style={{ textDecoration: 'none' }} to={`/EditActivity/${activity.id}`}><p className="edit-btn">Edit</p></Link>
+                                                <Link style={{ textDecoration: 'none' }} to={`/EditActivity/${activity._id}`}><p className="edit-btn">Edit</p></Link>
                                             </div>
                                         </div>
                                     </div>

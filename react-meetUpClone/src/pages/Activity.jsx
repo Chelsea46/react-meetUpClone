@@ -1,6 +1,8 @@
 import { useParams} from "react-router-dom"
 import { useContext, useState, useEffect} from "react"
 import { ActivityContext } from "../contexts/ActivityContext"
+import axios from "axios"
+import moment from "moment"
 import Navbar from "../components/Navbar"
 import Modal from "../components/Modal"
 
@@ -11,50 +13,49 @@ export default function Activity(){
 
     const [openModal, setModalOpen] = useState(false)
     const [enrollFormData, setEnrollFormData] = useState({
-        firstName: '',
-        lastName: '',
-        email: ''
+        enrolledFirstName: '',
+        enrolledLastName: '',
+        enrolledEmail: ''
     })
 
     const {id} = useParams()
-    
     const currentActivity = newActivity.filter(current => { 
-        return id === current.id
-    })
+        return id === current._id
+     })
 
-    
+     const currentID = currentActivity.length > 0 && currentActivity[0]._id || ""
+         
     function enrollFormChange(e){
         const { name, value } = e.target;
         if(name === 'first-name'){
             setEnrollFormData((prevFormData) => ({
                 ...prevFormData,
-                firstName: value.charAt(0).toUpperCase() + value.slice(1)
+                enrolledFirstName: value.charAt(0).toUpperCase() + value.slice(1)
             }))
         }else if(name === 'last-name'){
             setEnrollFormData((prevFormData) => ({
                 ...prevFormData,
-                lastName: value.charAt(0).toUpperCase() + value.slice(1)
+                enrolledLastName: value.charAt(0).toUpperCase() + value.slice(1)
             }))
         }else if(name === 'email'){
             setEnrollFormData((prevFormData) => ({
                 ...prevFormData,
-                email: value
+                enrolledEmail: value
             }))
         }
     }
     
-    const editActivityWithEnrolled = (data) => {
-        let localStorageActivity = JSON.parse(localStorage.getItem('activityFormData')) || []
-        
-        const updatedActivityEnrollment = localStorageActivity.map((activity) => {
-            if (activity.id === id) {
+    const editActivityWithEnrolled = async (data) => {
+        // let localStorageActivity = JSON.parse(localStorage.getItem('activityFormData')) || []
+        const updatedActivityEnrollment = newActivity.map((activity) => {
+            if (activity._id === currentID) {
                 const prevEnrolled = activity.enrolled || [] 
                 const updatedEnrolled = [
                     ...prevEnrolled,
                     {
-                        firstName: data.firstName,
-                        lastName: data.lastName,
-                        email: data.email,
+                        enrolledFirstName: data.enrolledFirstName,
+                        enrolledLastName: data.enrolledLastName,
+                        enrolledEmail: data.enrolledEmail,
                     }
                 ]
                 return {
@@ -64,22 +65,32 @@ export default function Activity(){
             }
             return activity
         })  
-        localStorage.setItem('activityFormData', JSON.stringify(updatedActivityEnrollment))
-        setNewActivity(updatedActivityEnrollment)
-    }
+        await axios.put(`http://localhost:5000/api/activity/${currentID}`,{
+            enrolled: {
+                enrolledFirstName: data.enrolledFirstName,
+                enrolledLastName: data.enrolledLastName,
+                enrolledEmail: data.enrolledEmail
+            }
+           })
+            setNewActivity(updatedActivityEnrollment)
+        }
+        
+        // localStorage.setItem('activityFormData', JSON.stringify(updatedActivityEnrollment))
+        // setNewActivity(updatedActivityEnrollment)
+    
     
     function onSubmit(e){
         e.preventDefault()
         editActivityWithEnrolled(enrollFormData)
         setEnrollFormData({
-            firstName: '',
-            lastName: '',
-            email: ''
+            enrolledFirstName: '',
+            enrolledLastName: '',
+            enrolledEmail: ''
         })
         setModalOpen(false)
     }
-    
-    console.log(currentActivity[0].enrolled)
+
+    console.log(currentActivity[0])
 
     return(
         <div className="activity-page-container">
@@ -103,15 +114,15 @@ export default function Activity(){
                         <div className="details-right-card">
                             <div className="date-location">
                                 <h3>When and where:</h3>
-                                <p><i className="fa-solid fa-clock"></i>{currentActivity[0].date}</p>
-                                <p><i className="fa-solid fa-location-dot"></i>{currentActivity[0].city}</p>
+                                <p><i className="fa-solid fa-clock"></i>{moment(currentActivity[0].activityDate).format("Do MMM YY")}</p>
+                                <p><i className="fa-solid fa-location-dot"></i>{currentActivity[0].activityCity}</p>
                             </div>
                             <img className="enrollment-card-img" src="https://secure.meetupstatic.com/next/images/shared/handsUp.svg?w=384" alt="" />
                             <div className="enrolled">
                                 <h3>People enrolled:</h3>
                                 {Array.isArray(currentActivity[0].enrolled) && currentActivity[0].enrolled.map((person, index) => (
                                 <p key={index}>
-                                    <span className="line"></span><span><i className="fa-solid fa-user"></i></span>{person.firstName} {person.lastName}
+                                    <span className="line"></span><span><i className="fa-solid fa-user"></i></span>{person.enrolledFirstName} {person.enrolledLastName}
                                 </p>
                                 ))}
                             </div>

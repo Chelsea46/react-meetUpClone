@@ -1,5 +1,6 @@
 import {useState, createContext, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
 import { v4 as uuidv4 } from 'uuid'
 
 export const ActivityContext = createContext()
@@ -10,11 +11,10 @@ function ActivityContextProvider(props){
 
     // form state
     const [activityFormData, setActivityFormData] = useState({
-        id: '',
-        activityName: '',
-        activityType: '',
+        name: '',
+        type: '',
         city: '',
-        creatorName: '',
+        creator: '',
         date: ''
       })
 
@@ -26,28 +26,37 @@ function ActivityContextProvider(props){
     const [citySearch, setCitySearch] = useState('')
     const [dateSearch, setDateSearch] = useState('')
 
+    // api call for activities
+    async function getActivities(){
+        const res = await axios.get("http://localhost:5000/api/activity")
+        setNewActivity(res.data)
+    }
+
     useEffect(() => {
-        let localStorageActivity = JSON.parse(localStorage.getItem('activityFormData')) || []
-        setNewActivity(localStorageActivity)
+        // let localStorageActivity = JSON.parse(localStorage.getItem('activityFormData')) || []
+        // setNewActivity(localStorageActivity)
+        getActivities()
     }, [])
 
+    
+    
     //   form change
     function handleChange(e){
         const {name, value} = e.target
         if(name === 'activity-name'){
             setActivityFormData((prevActivityFormData) => ({
                 ...prevActivityFormData,
-                activityName:value.charAt(0).toUpperCase() + value.slice(1)
+                name:value.charAt(0).toUpperCase() + value.slice(1)
             }))
         }else if(name === 'activity-type'){
             setActivityFormData((prevActivityFormData) => ({
                 ...prevActivityFormData,
-                activityType:value.charAt(0).toUpperCase() + value.slice(1)
+                type:value.charAt(0).toUpperCase() + value.slice(1)
             }))
         }else if(name === 'creator-name'){
             setActivityFormData((prevActivityFormData) => ({
                 ...prevActivityFormData,
-                creatorName:value.charAt(0).toUpperCase() + value.slice(1)
+                creator:value.charAt(0).toUpperCase() + value.slice(1)
             }))
         }else if(name === 'date'){
             setActivityFormData((prevActivityFormData) => ({
@@ -64,25 +73,30 @@ function ActivityContextProvider(props){
 
     
     // handle submit of form
-    function handleSubmit(event) {
+    async function handleSubmit(event) {
         event.preventDefault()
 
-        const uniqueId = uuidv4()
-        const formDataWithId = { ...activityFormData, id: uniqueId }
+        const res = await axios.post("http://localhost:5000/api/activity", activityFormData)
 
-        let localStorageActivity = JSON.parse(localStorage.getItem('activityFormData')) || []
-        const addedActivity = [...localStorageActivity, formDataWithId]
-        
-        localStorage.setItem('activityFormData', JSON.stringify(addedActivity))
-        setNewActivity(addedActivity)
-        setActivityFormData({
-          activityName: '',
-          activityType: '',
-          creatorName: '',
-          date: '',
-          city: ''
-        })
         navigate('/')
+        
+        // **Code before Backend was initialised**
+        // const uniqueId = uuidv4()
+        // const formDataWithId = { ...activityFormData, id: uniqueId }
+        
+
+        // let localStorageActivity = JSON.parse(localStorage.getItem('activityFormData')) || []
+        // const addedActivity = [...localStorageActivity, formDataWithId]
+        
+        // localStorage.setItem('activityFormData', JSON.stringify(addedActivity))
+        // setNewActivity(addedActivity)
+        // setActivityFormData({
+        //   activityName: '',
+        //   activityType: '',
+        //   creatorName: '',
+        //   date: '',
+        //   city: ''
+        // })
       }
       
 
