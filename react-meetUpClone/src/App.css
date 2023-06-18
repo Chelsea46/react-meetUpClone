@@ -460,36 +460,19 @@ li{
   margin-bottom: 1.6rem;
 }
 
-.modal-card button {
-  padding: 0.8rem 1.6rem;
-  background-color: #e53935;
-  color: #fff;
-  border: none;
-  border-radius: 0.4rem;
+.modal-card > button {
+  margin-bottom: 1em;
+  padding: .5em;
+  background-color: #E7723E;
+  box-shadow: 3px 3px 0px -1px rgba(0,0,0,1);
+  border: 1px solid black;
+  font-weight: bold;
   cursor: pointer;
 }
 
 .modal-card button:hover {
-  background-color: #c62828;
+  background-color: white;
 }
-
-.modal-card .close-btn {
-  position: absolute;
-  top: 1.6rem;
-  right: 1.6rem;
-  color: #757575;
-  font-size: 2.4rem;
-  border: none;
-  background: none;
-  cursor: pointer;
-}
-
-.modal-card .close-btn:hover {
-  color: #333;
-}
-
-
-
 
 @media(min-width:820px){
   .activity-card-container{
