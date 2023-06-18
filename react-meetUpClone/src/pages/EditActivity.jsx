@@ -58,8 +58,6 @@ export default function EditActivity(){
             }
         }
 
-       console.log(editActivityData)
-
         const editActivityUpdate = async (data) => {
           // let localStorageActivity = JSON.parse(localStorage.getItem('activityFormData')) || []
             const updatedActivity = newActivity.map((activity) => {

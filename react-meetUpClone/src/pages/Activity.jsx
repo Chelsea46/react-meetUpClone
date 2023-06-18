@@ -1,5 +1,6 @@
 import { useParams} from "react-router-dom"
 import { useContext, useState, useEffect} from "react"
+import ActivityRemoved from '../components/ActivityRemoved'
 import { ActivityContext } from "../contexts/ActivityContext"
 import axios from "axios"
 import moment from "moment"
@@ -10,6 +11,7 @@ import Modal from "../components/Modal"
 export default function Activity(){
 
     const { newActivity, setNewActivity} = useContext(ActivityContext)
+    const [activityDeleted, setActivityDeleted] = useState(false)
 
     const [openModal, setModalOpen] = useState(false)
     const [enrollFormData, setEnrollFormData] = useState({
@@ -90,7 +92,10 @@ export default function Activity(){
         setModalOpen(false)
     }
 
-    console.log(currentActivity[0])
+    async function deleteActivity(){
+        await axios.delete(`http://localhost:5000/api/activity/${currentActivity[0]._id}`)
+        setActivityDeleted(true)
+    }
 
     return(
         <div className="activity-page-container">
@@ -102,6 +107,7 @@ export default function Activity(){
                 </div>
             </div>
             <div className="details-container">
+                {activityDeleted && <ActivityRemoved />}
                 <div className="details-left">
                     <img className="details-img" src="https://images.unsplash.com/photo-1494253109108-2e30c049369b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="" />
                     <h3>Details</h3>
@@ -132,7 +138,7 @@ export default function Activity(){
                 <Modal open={openModal} onClose={() => setModalOpen(false)} onChange={enrollFormChange} onSubmit={onSubmit}/>
                 <div className="enroll-container">
                     <div className="details-btns">
-                        <button className="share-btn">Share</button>
+                        <button className="delete-btn" onClick={deleteActivity}>Delete</button>
                         <button className="enroll-btn" onClick={() => setModalOpen(true)}>Enroll</button>
                     </div>
                 </div>

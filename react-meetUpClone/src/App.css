@@ -285,10 +285,10 @@ form{
   height: 37px;
 }
 
-.share-btn{
+.delete-btn{
   width: 45%;
   color: black;
-  background-color: white;
+  background-color: #f33939;
   padding: .5em;
   cursor: pointer;
   border: 2px solid black;
@@ -434,6 +434,60 @@ li{
   width: 50%;
   position: relative;
 }
+
+.delete-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
+.modal-card {
+  background-color: #f9f9f9;
+  border-radius: 0.8rem;
+  padding: 2.4rem;
+  max-width: 40rem;
+  text-align: center;
+}
+
+.modal-card h3 {
+  margin-bottom: 1.6rem;
+}
+
+.modal-card button {
+  padding: 0.8rem 1.6rem;
+  background-color: #e53935;
+  color: #fff;
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+}
+
+.modal-card button:hover {
+  background-color: #c62828;
+}
+
+.modal-card .close-btn {
+  position: absolute;
+  top: 1.6rem;
+  right: 1.6rem;
+  color: #757575;
+  font-size: 2.4rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.modal-card .close-btn:hover {
+  color: #333;
+}
+
 
 
 
