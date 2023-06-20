@@ -46,40 +46,39 @@ export default function Activity(){
             }))
         }
     }
-    
+
     const editActivityWithEnrolled = async (data) => {
-        // let localStorageActivity = JSON.parse(localStorage.getItem('activityFormData')) || []
+         // let localStorageActivity = JSON.parse(localStorage.getItem('activityFormData')) || []
         const updatedActivityEnrollment = newActivity.map((activity) => {
-            if (activity._id === currentID) {
-                const prevEnrolled = activity.enrolled || [] 
-                const updatedEnrolled = [
-                    ...prevEnrolled,
-                    {
-                        enrolledFirstName: data.enrolledFirstName,
-                        enrolledLastName: data.enrolledLastName,
-                        enrolledEmail: data.enrolledEmail,
-                    }
-                ]
-                return {
-                    ...activity,
-                    enrolled: updatedEnrolled
-                }
-            }
-            return activity
-        })  
-        await axios.put(`http://localhost:5000/api/activity/${currentID}`,{
-            enrolled: {
+          if (activity._id === currentID) {
+            const prevEnrolled = activity.enrolled || []
+            const updatedEnrolled = [
+              ...prevEnrolled,
+              {
                 enrolledFirstName: data.enrolledFirstName,
                 enrolledLastName: data.enrolledLastName,
-                enrolledEmail: data.enrolledEmail
+                enrolledEmail: data.enrolledEmail,
+              },
+            ];
+            return {
+              ...activity,
+              enrolled: updatedEnrolled,
             }
-           })
-            setNewActivity(updatedActivityEnrollment)
-        }
-        
-        // localStorage.setItem('activityFormData', JSON.stringify(updatedActivityEnrollment))
-        // setNewActivity(updatedActivityEnrollment)
-    
+          }
+          return activity
+        })
+      
+        await axios.put(`http://localhost:5000/api/activity/enroll/${currentID}`, {
+            enrolledFirstName: data.enrolledFirstName,
+            enrolledLastName: data.enrolledLastName,
+            enrolledEmail: data.enrolledEmail
+        })
+      
+        setNewActivity(updatedActivityEnrollment)
+      }
+      // localStorage.setItem('activityFormData', JSON.stringify(updatedActivityEnrollment))
+      // setNewActivity(updatedActivityEnrollment)
+      
     
     function onSubmit(e){
         e.preventDefault()
