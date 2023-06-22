@@ -7,7 +7,7 @@ import Navbar from "../components/Navbar"
 
 export default function EditActivity(){
 
-    const { newActivity, setNewActivity } = useContext(ActivityContext)
+    const { newActivity, setNewActivity, getActivities} = useContext(ActivityContext)
     const {id} = useParams()
     
     const navigate = useNavigate()
@@ -15,8 +15,6 @@ export default function EditActivity(){
     const currentActivity = newActivity.filter(current => { 
        return id === current._id
     })
-
-    // console.log(currentActivity[0]._id)
     
     const currentID = currentActivity.length > 0 && currentActivity[0]._id || ""
    
@@ -63,27 +61,32 @@ export default function EditActivity(){
             const updatedActivity = newActivity.map((activity) => {
                 if (activity._id === currentID) {
                     return {
-                        _id: activity._id,
+                        ...activity,
                         activityName: data.name || activity.activityName,
                         activityType: data.type || activity.activityType,
                         creatorName: data.creator || activity.creatorName,
                         activityDate: data.date || activity.activityDate,
                         activityCity: data.city || activity.activityCity,
-                        enrolled: activity.enrolled || []
+                        enrolled: [
+                          ...activity.enrolled
+                        ]
                     }
                 }
                    return activity
             })
             // localStorage.setItem('activityFormData', JSON.stringify(updatedActivity))
-           await axios.put(`http://localhost:5000/api/activity/${currentID}`,{
+          await axios.put(`http://localhost:5000/api/activity/${currentID}`,{
             name: data.name,
             type: data.type,
             creator: data.creator,
             date: data.date,
             city: data.city
-           })
-            setNewActivity(updatedActivity)
-        }
+          })
+            setNewActivity([...updatedActivity])
+            getActivities()
+            navigate("/")
+      }
+      
 
        function handleEdit(e){
             e.preventDefault()
@@ -97,9 +100,9 @@ export default function EditActivity(){
                 date: '',
                 city: ''
             })
-            navigate("/")
         }
-
+        const defaultDate = new Date(currentActivity[0].activityDate).toISOString().split('T')[0]
+        
     return(
         <div className="form-page-container">
         <Navbar />
@@ -111,7 +114,7 @@ export default function EditActivity(){
                     <input className="form-input"type="text" name="activity-type"  defaultValue={currentActivity[0].activityType} onChange={editFormChange} autoComplete="on" required/>
                     <input className="form-input"type="text" name="creator-name"  defaultValue={currentActivity[0].creatorName} onChange={editFormChange} autoComplete="on" required/>
                     <input className="form-input"type="text" name="city"  defaultValue={currentActivity[0].activityCity} onChange={editFormChange} autoComplete="on" required/>
-                    <input className="form-input"type="date" name="date"  defaultValue={currentActivity[0].activityDate} onChange={editFormChange} autoComplete="on" required />
+                    <input className="form-input"type="date" name="date"  defaultValue={defaultDate} onChange={editFormChange} autoComplete="on" required />
                     <button className="activity-btn">Submit Edited Activity</button>
                 </form>
             </div>

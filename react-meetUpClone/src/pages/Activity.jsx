@@ -1,15 +1,15 @@
-import { useParams} from "react-router-dom"
-import { useContext, useState, useEffect} from "react"
+import { useNavigate, useParams} from "react-router-dom"
+import { useContext, useState} from "react"
 import ActivityRemoved from '../components/ActivityRemoved'
 import { ActivityContext } from "../contexts/ActivityContext"
 import axios from "axios"
 import moment from "moment"
-import Navbar from "../components/Navbar"
 import Modal from "../components/Modal"
 
 
 export default function Activity(){
-
+    
+    const nav = useNavigate()
     const { newActivity, setNewActivity} = useContext(ActivityContext)
     const [activityDeleted, setActivityDeleted] = useState(false)
 
@@ -26,6 +26,8 @@ export default function Activity(){
      })
 
      const currentID = currentActivity.length > 0 && currentActivity[0]._id || ""
+
+     console.log(currentActivity)
          
     function enrollFormChange(e){
         const { name, value } = e.target;
@@ -93,7 +95,14 @@ export default function Activity(){
 
     async function deleteActivity(){
         await axios.delete(`http://localhost:5000/api/activity/${currentActivity[0]._id}`)
+        setNewActivity(prevActivity => prevActivity.filter(activity => activity._id !== currentActivity[0]._id))
         setActivityDeleted(true)
+    }
+
+    if(currentActivity.length === 0){
+        return(
+            <ActivityRemoved />
+        )
     }
 
     return(
@@ -106,7 +115,6 @@ export default function Activity(){
                 </div>
             </div>
             <div className="details-container">
-                {activityDeleted && <ActivityRemoved />}
                 <div className="details-left">
                     <img className="details-img" src="https://images.unsplash.com/photo-1494253109108-2e30c049369b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="" />
                     <h3>Details</h3>

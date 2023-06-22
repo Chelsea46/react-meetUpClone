@@ -2,13 +2,15 @@ body{
   margin: 0;
 }
 
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro:200');
+
 .form-page-container{
-  background-color: #F2E3DB;
+  background-color: #E8DCCB;
 }
 
 .homepage-container {
   margin: 0;
-  background-color: #F2E3DB;
+  background-color: #E8DCCB;
 }
 .logo-img{
  width: 80px;
@@ -19,7 +21,7 @@ nav{
   justify-content: space-between;
   width: 100%;
   align-items: center;
-  background-color: #F2E3DB;
+  background-color: #E5D9C8;
 }
 
 .nav-list{
@@ -72,6 +74,13 @@ form{
   height: 100vh;
 }
 
+.homepage-card-container{
+  /* background-color: #A5B2D7; */
+
+
+}
+
+
 .form-input{
   margin-bottom: 2em;
   border-radius: 8px;
@@ -104,7 +113,6 @@ form{
   display: flex;
   border-bottom: 1px solid #D9D9D9;
   background-color: #FEFAF0;
-  border: 1px solid black;
   box-shadow: 3px 3px 1px 1px rgba(0,0,0,.2);
   border-radius: 8px;
   width: 83%;
@@ -146,15 +154,15 @@ form{
 }
 .welcome-title > p{
   font-family: 'Montserrat', sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   line-height: 1.5em;
-}
-.bonds{
-  margin-bottom: 0;
+  color: black;
+  text-shadow: #E5D9C8;
 }
 
-.homepage-img{
- 
+.bonds{
+  margin-bottom: 0;
+  color: #4C2215;
 }
 
 .homepage-right-img{
@@ -166,9 +174,33 @@ form{
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin-left: 1em;
-  margin-top: 2em;
-  margin-bottom: 2em;
+  background-image: url('https://static.pexels.com/photos/414171/pexels-photo-414171.jpeg');
+  background-size:cover;
+  -webkit-animation: slidein 100s;
+  animation: slidein 100s;
+
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+
+  -webkit-animation-direction: alternate;
+  animation-direction: alternate;   
+  
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10vw), 0 100%);
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10vw), 0 100%);
+  
+}
+
+@-webkit-keyframes slidein {
+from {background-position: top; background-size:3000px; }
+to {background-position: -100px 0px;background-size:2750px;}
+}
+
+@keyframes slidein {
+from {background-position: top;background-size:3000px; }
+to {background-position: -100px 0px;background-size:2750px;}
 }
 
 .left-nav{
@@ -190,10 +222,11 @@ form{
 
 .add-activity-btn{
   color: black;
+  font-size: 1rem;
   margin-left: 1em;
   margin-right: 1em;
   background-color: white;
-  padding: .5em 1em;
+  padding: .75em 1em;
   cursor: pointer;
   border: 2px solid black;
   box-shadow: 3px 3px 0px 1px rgba(0,0,0,1);
@@ -218,8 +251,11 @@ form{
 
 .upcoming-title{
   margin-left: 1em;
+  color: #51281B;
+  font-weight: bold;
   font-family: 'Montserrat', sans-serif;
 }
+
 
 .activity-hero{
   font-family: 'Montserrat', sans-serif;
@@ -244,7 +280,7 @@ form{
 }
 
 .adventure{
-  color: #E7723E;
+  color: #E03C30;
   margin-top: 0;
 }
 
@@ -345,7 +381,7 @@ form{
 }
 
 .active{
-  color: #E7723E;
+  color: #E03C30;
 }
 
 .fa-caret-left, .fa-caret-right{
@@ -495,6 +531,10 @@ li{
   .activity-card {
     width: 25%;
   }
+  .activity-card-container{
+    margin-left: 4em;
+    margin-right: 4em;
+  }
   .activity-form-container{
     width: 40%;
   }
@@ -525,10 +565,10 @@ li{
   }
 
   .welcome-title > h1{
-    font-size: 3rem;
+    font-size: 5rem;
   }
   .upcoming-title{
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin-left: 2em;
   }
   .activity-hero > h1{

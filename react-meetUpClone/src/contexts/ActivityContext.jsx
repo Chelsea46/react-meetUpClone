@@ -1,7 +1,7 @@
 import {useState, createContext, useEffect} from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { v4 as uuidv4 } from 'uuid'
+
 
 export const ActivityContext = createContext()
 
@@ -19,7 +19,7 @@ function ActivityContextProvider(props){
       })
 
     //   new activity state
-      const [newActivity, setNewActivity] = useState([]);
+    const [newActivity, setNewActivity] = useState([]);
 
     //   search states
     const [activitySearch, setActivitySearch] = useState('')
@@ -77,7 +77,17 @@ function ActivityContextProvider(props){
         event.preventDefault()
 
         const res = await axios.post("http://localhost:5000/api/activity", activityFormData)
+        const addedActivity = res.data
 
+        setNewActivity((prevNewActivity) => [...prevNewActivity, addedActivity]);
+
+        // setNewActivity([...newActivity, {
+        //     activityName: activityFormData.name,
+        //     activityType: activityFormData.type,
+        //     creatorName: activitySearch.creator,
+        //     activityCity: activityFormData.city,
+        //     activityDate: activityFormData.date,
+        //    }])
         navigate('/')
         
         // **Code before Backend was initialised**
@@ -97,8 +107,7 @@ function ActivityContextProvider(props){
         //   date: '',
         //   city: ''
         // })
-      }
-      
+    }
 
     //   handle search
     function handleActivity(e) {
@@ -115,10 +124,9 @@ function ActivityContextProvider(props){
         const dateValue = e.target.value;
         setDateSearch(dateValue);
       }
-      
-      
 
-    const value = { activitySearch, citySearch, dateSearch, handleActivity, handleCity, handleDate, handleSubmit, handleChange, activityFormData, setActivityFormData, newActivity, setNewActivity}
+
+    const value = { activitySearch, citySearch, dateSearch, handleActivity, handleCity, handleDate, handleSubmit, handleChange, activityFormData, setActivityFormData, newActivity, setNewActivity, getActivities}
 
     return(
         <ActivityContext.Provider value={value}>
