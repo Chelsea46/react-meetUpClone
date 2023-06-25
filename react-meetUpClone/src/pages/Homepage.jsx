@@ -2,6 +2,7 @@ import Navbar from "../components/Navbar"
 import { useContext, useState, useEffect} from "react"
 import { useNavigate, Link } from "react-router-dom"
 import { ActivityContext } from "../contexts/ActivityContext"
+import Searchbar from "../components/Searchbar"
 import moment from "moment"
 
 export default function Homepage(){
@@ -90,6 +91,7 @@ export default function Homepage(){
                 </div>
             <div className="homepage-card-container">
                 <h2 className="upcoming-title">Upcoming Events ~</h2>
+                <Searchbar />
                     <div className="activity-card-container">
                         {filteredState.length > 0  && visibleActivity.map((activity) => {
                             return(

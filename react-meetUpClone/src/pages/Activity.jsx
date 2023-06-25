@@ -70,7 +70,7 @@ export default function Activity(){
           return activity
         })
       
-        await axios.put(`http://localhost:5000/api/activity/enroll/${currentID}`, {
+        await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/activity/enroll/${currentID}`, {
             enrolledFirstName: data.enrolledFirstName,
             enrolledLastName: data.enrolledLastName,
             enrolledEmail: data.enrolledEmail
@@ -94,7 +94,7 @@ export default function Activity(){
     }
 
     async function deleteActivity(){
-        await axios.delete(`http://localhost:5000/api/activity/${currentActivity[0]._id}`)
+        await axios.delete(`${import.meta.env.VITE_BACKEND_URL}/api/activity/${currentActivity[0]._id}`)
         setNewActivity(prevActivity => prevActivity.filter(activity => activity._id !== currentActivity[0]._id))
         setActivityDeleted(true)
     }

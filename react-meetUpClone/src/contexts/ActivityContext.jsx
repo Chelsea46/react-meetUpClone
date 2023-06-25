@@ -28,7 +28,7 @@ function ActivityContextProvider(props){
 
     // api call for activities
     async function getActivities(){
-        const res = await axios.get("http://localhost:5000/api/activity")
+        const res = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/activity`)
         setNewActivity(res.data)
     }
 
@@ -76,7 +76,7 @@ function ActivityContextProvider(props){
     async function handleSubmit(event) {
         event.preventDefault()
 
-        const res = await axios.post("http://localhost:5000/api/activity", activityFormData)
+        const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/activity`, activityFormData)
         const addedActivity = res.data
 
         setNewActivity((prevNewActivity) => [...prevNewActivity, addedActivity]);

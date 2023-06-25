@@ -75,7 +75,7 @@ export default function EditActivity(){
                    return activity
             })
             // localStorage.setItem('activityFormData', JSON.stringify(updatedActivity))
-          await axios.put(`http://localhost:5000/api/activity/${currentID}`,{
+          await axios.put(`${import.meta.env.VITE_BACKEND_URL}/api/activity/${currentID}`,{
             name: data.name,
             type: data.type,
             creator: data.creator,
