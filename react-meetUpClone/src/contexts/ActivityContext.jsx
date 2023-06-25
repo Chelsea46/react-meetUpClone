@@ -78,7 +78,7 @@ function ActivityContextProvider(props){
 
         const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/activity`, activityFormData)
         const addedActivity = res.data
-
+        console.log(addedActivity)
         setNewActivity((prevNewActivity) => [...prevNewActivity, addedActivity]);
 
         // setNewActivity([...newActivity, {
