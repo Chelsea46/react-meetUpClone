@@ -162,7 +162,8 @@ form{
 .welcome-title > p{
   font-family: 'Montserrat', sans-serif;
   margin-left: 1em;
-  font-size: 1.2rem;
+  margin-right: 1em;
+  font-size: 1rem;
   line-height: 1.5em;
   color: black;
   text-shadow: #E5D9C8;
@@ -172,7 +173,7 @@ form{
   margin-bottom: 0;
   color: #244E6B;
   margin-left: .5em;
-  font-size: 2rem;
+  font-size: 3rem;
 }
 
 .homepage-right-img{
@@ -295,8 +296,7 @@ to {background-position: -100px 0px;background-size:2750px;}
   color: #C94B2F;
   margin-top: 0;
   margin-left: .5em;
-  
-  font-size: 2.3rem;
+  font-size: 3rem;
 }
 
 .details-img{
