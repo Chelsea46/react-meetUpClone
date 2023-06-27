@@ -5,6 +5,7 @@ import { ActivityContext } from "../contexts/ActivityContext"
 import axios from "axios"
 import moment from "moment"
 import Modal from "../components/Modal"
+import Navbar from "../components/Navbar"
 
 
 export default function Activity(){
@@ -107,6 +108,7 @@ export default function Activity(){
 
     return(
         <div className="activity-page-container">
+            <Navbar />
             <div className="wavy">
                 <div className="activity-hero">
                     <h1>Activity Details for {currentActivity[0].activityName}</h1>
