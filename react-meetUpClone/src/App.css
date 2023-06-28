@@ -127,11 +127,12 @@ form{
 }
 
 .activity-card-img{
-  width: 40%;
-  object-fit: contain;
+  width: 31%;
+  min-height: 149px;
+  object-fit: cover;
   align-self: flex-start;
   border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-top-right-radius: 8px
 }
 
 
@@ -260,7 +261,6 @@ to {background-position: -100px 0px;background-size:2750px;}
 
 .edit-btn-center{
   display: flex;
-  justify-content: center;
 }
 
 .upcoming-title{
@@ -474,11 +474,6 @@ to {background-position: -100px 0px;background-size:2750px;}
   margin-left: 1em;
 }
 
-.enrollment-card-img{
-  width: 200px;
-
-}
-
 .details-left > p{
   line-height: 2em;
 }
@@ -490,6 +485,7 @@ li{
 .enrollment-card-img{
   z-index: 0;
   left: 49%;
+  top: -24% !important;
   opacity: .5;
   width: 50%;
   position: relative;
@@ -543,15 +539,18 @@ li{
     flex-direction: column;
     margin-left: 1em;
   }
-  .activity-card-img {
-    width: 100%;
-  }
   .hero-section{
     flex-direction: row;
   }
 }
 
 @media(min-width: 1134px){
+  .activity-card-img {
+    object-fit: cover; /* Scale the image while preserving its aspect ratio */
+    max-height: 200px; /* Set a maximum height for the image */
+    min-height: 200px;
+    width: 100%;
+  }
   .bonds, .adventure, .welcome-title > p, .add-activity-btn{
     margin-left: 0;
   }
@@ -563,6 +562,7 @@ li{
   }
   .activity-card {
     width: 25%;
+    height: 375px;
   }
   .activity-card-container{
     margin-left: 4em;

@@ -4,6 +4,7 @@ import { useNavigate, Link } from "react-router-dom"
 import { ActivityContext } from "../contexts/ActivityContext"
 import Searchbar from "../components/Searchbar"
 import moment from "moment"
+import axios from "axios"
 
 export default function Homepage(){
 
@@ -13,19 +14,40 @@ export default function Homepage(){
     const [filteredState, setFilteredState] = useState([])
     const [activityPerPage, setActivityPerPage] = useState(6)
     const [currentPage, setCurrentPage] = useState(1)
+    const [randomImages, setRandomImages] = useState([]);
 
-    // unsplash
 
+    
     useEffect(() => {
         if(filteredState.length < 1){
             setFilteredState(newActivity)
         }
     },[newActivity])
-
+    // unsplash
+    const fetchRandomImages = async () => {
+        try {
+          const randomImagePromises = newActivity.map(async (activity) => {
+            const response = await fetch("https://api.unsplash.com/photos/random", {
+              headers: {
+                Authorization: `Client-ID ${import.meta.env.VITE_UNSPLASH_ID}`,
+              },
+            })
+            const data = await response.json()
+            return data.urls.regular
+          })
+      
+          const randomImages = await Promise.all(randomImagePromises);
+          setRandomImages(randomImages)
+        } catch (error) {
+          console.error(error)
+        }
+    }
+        //   end of unsplash
+    
     useEffect(() => {
         const filteredActivity = filteredState.filter((activity) =>{
-
-             if(activitySearch && citySearch){
+            
+            if(activitySearch && citySearch){
                  return (
                      activity.activityName.toLowerCase().includes(activitySearch?.toLowerCase()) &&
                      activity.activityCity.toLowerCase().includes(citySearch.toLowerCase())
@@ -55,6 +77,11 @@ export default function Homepage(){
     function navToForm(){
         nav('/addActivity')
     }
+
+    useEffect(() => {
+        fetchRandomImages();
+      }, [filteredState]);
+      
 
     // pagnation
 
@@ -93,11 +120,13 @@ export default function Homepage(){
                 <h2 className="upcoming-title">Upcoming Events ~</h2>
                 <Searchbar />
                     <div className="activity-card-container">
-                        {filteredState.length > 0  && visibleActivity.map((activity) => {
+                        {filteredState.length > 0  && visibleActivity.map((activity, index) => {
                             return(
                                 <>
-                                        <div className="activity-card">
-                                                <img className="activity-card-img" src="https://images.unsplash.com/photo-1494253109108-2e30c049369b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="" />
+                                        <div className="activity-card" key={activity._id}>
+                                            {randomImages[index] && (
+                                                <img className="activity-card-img" src={randomImages[index]} alt="Rate limit exceeded unsplash" />
+                                             )}
                                             <div className="text">
                                                 <p className="card-text" id="date">{moment(activity.activityDate).format("Do MMM YY")}</p>
                                                 <Link style={{ textDecoration: 'none' }} to={`/Activity/${activity._id}`}>
