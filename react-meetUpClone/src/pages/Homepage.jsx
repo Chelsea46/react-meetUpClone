@@ -4,7 +4,6 @@ import { useNavigate, Link } from "react-router-dom"
 import { ActivityContext } from "../contexts/ActivityContext"
 import Searchbar from "../components/Searchbar"
 import moment from "moment"
-import axios from "axios"
 
 export default function Homepage(){
 
@@ -14,7 +13,7 @@ export default function Homepage(){
     const [filteredState, setFilteredState] = useState([])
     const [activityPerPage, setActivityPerPage] = useState(6)
     const [currentPage, setCurrentPage] = useState(1)
-    const [randomImages, setRandomImages] = useState([]);
+    // const [randomImages, setRandomImages] = useState([]);
 
 
     
@@ -23,25 +22,26 @@ export default function Homepage(){
             setFilteredState(newActivity)
         }
     },[newActivity])
+    
     // unsplash
-    const fetchRandomImages = async () => {
-        try {
-          const randomImagePromises = newActivity.map(async (activity) => {
-            const response = await fetch("https://api.unsplash.com/photos/random", {
-              headers: {
-                Authorization: `Client-ID ${import.meta.env.VITE_UNSPLASH_ID}`,
-              },
-            })
-            const data = await response.json()
-            return data.urls.regular
-          })
+    // const fetchRandomImages = async () => {
+    //     try {
+    //       const randomImagePromises = newActivity.map(async (activity) => {
+    //         const response = await fetch("https://api.unsplash.com/photos/random", {
+    //           headers: {
+    //             Authorization: `Client-ID ${import.meta.env.VITE_UNSPLASH_ID}`,
+    //           },
+    //         })
+    //         const data = await response.json()
+    //         return data.urls.regular
+    //       })
       
-          const randomImages = await Promise.all(randomImagePromises);
-          setRandomImages(randomImages)
-        } catch (error) {
-          console.error(error)
-        }
-    }
+    //       const randomImages = await Promise.all(randomImagePromises);
+    //       setRandomImages(randomImages)
+    //     } catch (error) {
+    //       console.error(error)
+    //     }
+    // }
         //   end of unsplash
     
     useEffect(() => {
@@ -78,9 +78,9 @@ export default function Homepage(){
         nav('/addActivity')
     }
 
-    useEffect(() => {
-        fetchRandomImages();
-      }, [filteredState]);
+    // useEffect(() => {
+    //     fetchRandomImages();
+    //   }, [filteredState]);
       
 
     // pagnation
@@ -120,13 +120,10 @@ export default function Homepage(){
                 <h2 className="upcoming-title">Upcoming Events ~</h2>
                 <Searchbar />
                     <div className="activity-card-container">
-                        {filteredState.length > 0  && visibleActivity.map((activity, index) => {
+                        {filteredState.length > 0  && visibleActivity.map((activity) => {
                             return(
                                 <>
                                         <div className="activity-card" key={activity._id}>
-                                            {randomImages[index] && (
-                                                <img className="activity-card-img" src={randomImages[index]} alt="Rate limit exceeded unsplash" />
-                                             )}
                                             <div className="text">
                                                 <p className="card-text" id="date">{moment(activity.activityDate).format("Do MMM YY")}</p>
                                                 <Link style={{ textDecoration: 'none' }} to={`/Activity/${activity._id}`}>
